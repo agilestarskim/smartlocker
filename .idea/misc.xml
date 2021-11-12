@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/background.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/background_edit_text_border_purple.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/background_edit_text_color_gray.xml" value="0.2657407407407407" />
+        <entry key="app/src/main/res/drawable/background_gradients.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/background_number_button.xml" value="0.2111111111111111" />
+        <entry key="app/src/main/res/drawable/background_numberpad.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/background_opacity_0.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/background_transparency.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/bg_gradients.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/drawable/bg_gray_oval.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/drawable/bg_gray_radius20.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/drawable/bg_gray_radius20_border_purple.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/drawable/bg_purple_radius20.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/drawable/bg_white_radius20.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/drawable/bg_white_radius20_border_purple.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/drawable/bg_white_radius80.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/drawable/bg_white_radius_20.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/drawable/bs_glass_oval.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_home_50.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_option_100.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_option_80.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_status_circle.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_time.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/node.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/node_available.xml" value="0.10833333333333334" />
+        <entry key="app/src/main/res/drawable/node_fixing.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/drawable/node_using.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/drawable/using.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/layout/activity_assign.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.16974789915966387" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2128205128205128" />
+        <entry key="app/src/main/res/layout/dialog_admin_menu.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/dialog_assign.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialog_check.xml" value="0.193359375" />
+        <entry key="app/src/main/res/layout/dialog_open.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialog_succeed.xml" value="0.25416666666666665" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
