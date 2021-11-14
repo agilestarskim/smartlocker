@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.example.smartlocker.R
+import com.example.smartlocker.data.state.AdminMode
 import com.example.smartlocker.databinding.ActivityMainBinding
 import com.example.smartlocker.presentation.logic.Logic
 import com.example.smartlocker.presentation.view.dialog.CheckAdminDialog
@@ -51,18 +52,34 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
         initClickListener()
         observeNodeList()
+        setAdminTextVisible()
     }
 
 
     private fun observeNodeList() {
-        liveNode.liveNodeList.observe(this, { nodeList->
-            val selectedIDList = mutableListOf<Int>()
-            nodeList.forEach {
-                selectedIDList.add(it.id)
-            }
-            nodeViewList.filter { it != null }.forEachIndexed { index, appCompatButton ->
-                if(index in selectedIDList) nodeViewList[index]?.setBackgroundResource(R.drawable.node_using)
-                else nodeViewList[index]?.setBackgroundResource(R.drawable.node_available)
+        liveNode.liveNodeList.observe(
+            this, { liveNodeList->
+                val usingList = mutableListOf<Int>()
+                val fixingList = mutableListOf<Int>()
+                liveNodeList.forEach { nodeModel ->
+                    if(nodeModel.enabled) usingList.add(nodeModel.id)
+                    else fixingList.add(nodeModel.id)
+                }
+                nodeViewList.filterNotNull().forEachIndexed { index, _ ->
+                    if(index in usingList) nodeViewList[index]?.setBackgroundResource(R.drawable.node_using)
+                    else if (index in fixingList) nodeViewList[index]?.setBackgroundResource(R.drawable.node_fixing)
+                    else nodeViewList[index]?.setBackgroundResource(R.drawable.node_available)
+                }
+            },
+        )
+    }
+
+    fun setAdminTextVisible(){
+        AdminMode.liveState.observe(this,{
+            if(it){
+                binding.adminModeText.visibility = View.VISIBLE
+            }else{
+                binding.adminModeText.visibility = View.INVISIBLE
             }
         })
     }

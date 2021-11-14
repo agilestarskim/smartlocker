@@ -119,7 +119,7 @@ class Password(application: Application): AndroidViewModel(application) {
 
     private fun complete(){
         //nodeDB 저장
-        liveNode.insert(NodeModel(Logic.getSelectedId(), _secondPassword.joinToString("")))
+        liveNode.insert(NodeModel(Logic.getSelectedId(), _secondPassword.joinToString(""),true))
         //TODO 사물함 OPEN
     }
 

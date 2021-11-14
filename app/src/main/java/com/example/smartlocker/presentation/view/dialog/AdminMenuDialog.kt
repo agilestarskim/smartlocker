@@ -37,13 +37,13 @@ class AdminMenuDialog(context: Context):Dialog(context),View.OnClickListener {
     override fun onClick(v: View?) {
         when(v){
             (binding.openOneButton)->{
-                AdminMode.state = true
+                AdminMode.liveState.value = true
                 AdminMode.mode = 1
                 dismiss()
             }
 
             (binding.fixButton)->{
-                AdminMode.state =true
+                AdminMode.liveState.value =true
                 AdminMode.mode = 2
                 dismiss()
             }

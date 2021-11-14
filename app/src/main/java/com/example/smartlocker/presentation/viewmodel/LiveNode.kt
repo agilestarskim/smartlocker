@@ -60,6 +60,7 @@ class LiveNode(application: Application) : AndroidViewModel(application) {
     fun insert(node: NodeModel) {
         CoroutineScope(Dispatchers.IO).launch {
             db.getNodeDao().insert(node)
+            fetch()
         }
     }
 

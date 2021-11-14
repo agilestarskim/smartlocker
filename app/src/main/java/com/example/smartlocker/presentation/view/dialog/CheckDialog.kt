@@ -1,6 +1,7 @@
 package com.example.smartlocker.presentation.view.dialog
 
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
@@ -28,11 +29,12 @@ class CheckDialog(context: Context, val id: Int) : Dialog(context), View.OnClick
         liveNode.get(Logic.getSelectedId())?.password
         }
     }
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.textView2.text ="${id}번 사용자가 맞습니까?\n 비밀반호를 입력해 주세요"
+        binding.textView2.text ="${id}번 사용자가 맞습니까?\n 비밀번호를 입력해 주세요"
         window!!.setLayout(800, 1200)
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setCanceledOnTouchOutside(false)
