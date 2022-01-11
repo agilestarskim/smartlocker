@@ -32,13 +32,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             binding.node3,
             binding.node4,
             binding.node5,
-            binding.node6,
-            binding.node7,
-            binding.node8,
-            binding.node9,
-            binding.node10,
-            binding.node11,
-            binding.node12,
+            binding.node6
         )
     }
 
@@ -61,6 +55,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             this, { liveNodeList->
                 val usingList = mutableListOf<Int>()
                 val fixingList = mutableListOf<Int>()
+
                 liveNodeList.forEach { nodeModel ->
                     if(nodeModel.enabled) usingList.add(nodeModel.id)
                     else fixingList.add(nodeModel.id)
@@ -92,12 +87,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.node4.setOnClickListener(this)
         binding.node5.setOnClickListener(this)
         binding.node6.setOnClickListener(this)
-        binding.node7.setOnClickListener(this)
-        binding.node8.setOnClickListener(this)
-        binding.node9.setOnClickListener(this)
-        binding.node10.setOnClickListener(this)
-        binding.node11.setOnClickListener(this)
-        binding.node12.setOnClickListener(this)
         binding.adminButton.setOnClickListener(this)
     }
 
@@ -111,12 +100,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             binding.node4 -> logic.onClick(this, 4)
             binding.node5 -> logic.onClick(this, 5)
             binding.node6 -> logic.onClick(this, 6)
-            binding.node7 -> logic.onClick(this, 7)
-            binding.node8 -> logic.onClick(this, 8)
-            binding.node9 -> logic.onClick(this, 9)
-            binding.node10 -> logic.onClick(this, 10)
-            binding.node11 -> logic.onClick(this, 11)
-            binding.node12 -> logic.onClick(this, 12)
+
 
             binding.adminButton -> {
                 val dialog = CheckAdminDialog(this)

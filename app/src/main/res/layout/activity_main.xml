@@ -11,9 +11,11 @@
         android:id="@+id/adminModeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        app:layout_constraintVertical_bias="0.7"
         android:text="관리자 모드 실행 중"
         android:textColor="@color/white"
-        android:textSize="50sp"
+        android:textSize="35sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
         app:layout_constraintStart_toStartOf="@+id/gridLayout"
@@ -35,9 +37,10 @@
         android:id="@+id/gridLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:columnCount="4"
+        android:layout_margin="50dp"
+        android:columnCount="3"
         android:orientation="horizontal"
-        android:rowCount="3"
+        android:rowCount="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,8 +50,7 @@
             android:id="@+id/node1"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="60dp"
+            android:layout_margin="20dp"
             android:background="@drawable/node_available"
             android:text="@string/_1"
             android:textSize="50sp" />
@@ -57,8 +59,7 @@
             android:id="@+id/node2"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="60dp"
+            android:layout_margin="20dp"
             android:background="@drawable/node_available"
             android:text="@string/_2"
             android:textSize="50sp" />
@@ -67,8 +68,7 @@
             android:id="@+id/node3"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="60dp"
+            android:layout_margin="20dp"
             android:background="@drawable/node_available"
             android:text="@string/_3"
             android:textSize="50sp" />
@@ -77,8 +77,7 @@
             android:id="@+id/node4"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="60dp"
+            android:layout_margin="20dp"
             android:background="@drawable/node_available"
             android:text="@string/_4"
             android:textSize="50sp" />
@@ -87,8 +86,7 @@
             android:id="@+id/node5"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="60dp"
+            android:layout_margin="20dp"
             android:background="@drawable/node_available"
             android:text="@string/_5"
             android:textSize="50sp" />
@@ -97,74 +95,12 @@
             android:id="@+id/node6"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="60dp"
+            android:layout_margin="20dp"
             android:background="@drawable/node_available"
             android:text="@string/_6"
             android:textSize="50sp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/node7"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/node_available"
 
-            android:text="@string/_7"
-            android:textSize="50sp" />
-
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/node8"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/node_available"
-
-            android:text="@string/_8"
-            android:textSize="50sp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/node9"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/node_available"
-            android:text="@string/_9"
-            android:textSize="50sp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/node10"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/node_available"
-            android:text="@string/_10"
-            android:textSize="50sp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/node11"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/node_available"
-            android:text="@string/_11"
-            android:textSize="50sp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/node12"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/node_available"
-            android:text="@string/_12"
-            android:textSize="50sp" />
 
     </GridLayout>
 
@@ -172,6 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginStart="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/gridLayout"
         app:layout_constraintTop_toBottomOf="@+id/gridLayout"

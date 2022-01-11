@@ -35,7 +35,7 @@ class CheckDialog(context: Context, val id: Int) : Dialog(context), View.OnClick
         setContentView(binding.root)
 
         binding.textView2.text ="${id}번 사용자가 맞습니까?\n 비밀번호를 입력해 주세요"
-        window!!.setLayout(800, 1200)
+        window!!.setLayout(800, 1300)
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setCanceledOnTouchOutside(false)
         setCancelable(true)

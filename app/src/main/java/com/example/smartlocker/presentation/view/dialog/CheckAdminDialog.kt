@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-
 import android.view.View
 import com.example.smartlocker.databinding.DialogCheckBinding
 
@@ -25,7 +24,7 @@ class CheckAdminDialog(context: Context):Dialog(context), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.textView2.text ="관리자가 맞으십니까?\n 관리자 비밀번호를 입력해 주세요"
-        window!!.setLayout(800, 1200)
+        window!!.setLayout(800, 1300)
         window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         setCanceledOnTouchOutside(false)
         setCancelable(true)

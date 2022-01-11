@@ -46,7 +46,6 @@ class LiveNode(application: Application) : AndroidViewModel(application) {
             _liveNodeList.value = result.await()
             Log.d("fetch()", _liveNodeList.value.toString())
         }
-
     }
 
 
