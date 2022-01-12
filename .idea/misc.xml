@@ -38,7 +38,7 @@
         <entry key="app/src/main/res/drawable/using.xml" value="0.36822916666666666" />
         <entry key="app/src/main/res/layout/activity_assign.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.16974789915966387" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="app/src/main/res/layout/dialog_admin_menu.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/dialog_assign.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_check.xml" value="0.22" />

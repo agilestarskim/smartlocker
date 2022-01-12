@@ -26,9 +26,7 @@ class LiveNode(application: Application) : AndroidViewModel(application) {
 
     //라이브데이터
     companion object{
-        private val _liveNodeList = MutableLiveData<List<NodeModel>>().also {
-            Log.d("myTag", "livedata has been created!!!")
-        }
+        private val _liveNodeList = MutableLiveData<List<NodeModel>>()
     }
 
 

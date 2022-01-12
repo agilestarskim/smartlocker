@@ -31,8 +31,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             binding.node2,
             binding.node3,
             binding.node4,
-            binding.node5,
-            binding.node6
+            binding.node5
         )
     }
 
@@ -60,10 +59,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     if(nodeModel.enabled) usingList.add(nodeModel.id)
                     else fixingList.add(nodeModel.id)
                 }
-                nodeViewList.filterNotNull().forEachIndexed { index, _ ->
-                    if(index in usingList) nodeViewList[index]?.setBackgroundResource(R.drawable.node_using)
-                    else if (index in fixingList) nodeViewList[index]?.setBackgroundResource(R.drawable.node_fixing)
-                    else nodeViewList[index]?.setBackgroundResource(R.drawable.node_available)
+                nodeViewList.forEachIndexed { index, _ ->
+                    when (index) {
+                        0 -> return@forEachIndexed
+                        in usingList -> nodeViewList[index]?.setBackgroundResource(R.drawable.node_using)
+                        in fixingList -> nodeViewList[index]?.setBackgroundResource(R.drawable.node_fixing)
+                        else -> nodeViewList[index]?.setBackgroundResource(R.drawable.node_available)
+                    }
                 }
             },
         )
@@ -86,7 +88,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.node3.setOnClickListener(this)
         binding.node4.setOnClickListener(this)
         binding.node5.setOnClickListener(this)
-        binding.node6.setOnClickListener(this)
         binding.adminButton.setOnClickListener(this)
     }
 
@@ -99,7 +100,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             binding.node3 -> logic.onClick(this, 3)
             binding.node4 -> logic.onClick(this, 4)
             binding.node5 -> logic.onClick(this, 5)
-            binding.node6 -> logic.onClick(this, 6)
 
 
             binding.adminButton -> {
