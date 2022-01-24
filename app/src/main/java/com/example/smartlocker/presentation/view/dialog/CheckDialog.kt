@@ -46,8 +46,6 @@ class CheckDialog(context: Context, val id: Int) : Dialog(context), View.OnClick
 
     }
 
-
-
     private fun initButtonListener() {
         binding.button0.setOnClickListener(this)
         binding.button1.setOnClickListener(this)
@@ -62,8 +60,6 @@ class CheckDialog(context: Context, val id: Int) : Dialog(context), View.OnClick
         binding.deleteAllButton.setOnClickListener(this)
         binding.cancelButton.setOnClickListener(this)
     }
-
-
 
     override fun onClick(view: View?) {
         when (view) {
@@ -111,6 +107,4 @@ class CheckDialog(context: Context, val id: Int) : Dialog(context), View.OnClick
             }
         }
     }
-
-
 }

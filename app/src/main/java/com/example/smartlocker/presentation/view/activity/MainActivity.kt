@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         )
     }
 
-    fun setAdminTextVisible(){
+    private fun setAdminTextVisible(){
         AdminMode.liveState.observe(this,{
             if(it){
                 binding.adminModeText.visibility = View.VISIBLE
@@ -80,7 +80,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
     }
-
 
     private fun initClickListener() {
         binding.node1.setOnClickListener(this)
@@ -91,7 +90,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding.adminButton.setOnClickListener(this)
     }
 
-
     override fun onClick(v: View?) {
         when (v) {
 
@@ -100,16 +98,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             binding.node3 -> logic.onClick(this, 3)
             binding.node4 -> logic.onClick(this, 4)
             binding.node5 -> logic.onClick(this, 5)
-
-
             binding.adminButton -> {
                 val dialog = CheckAdminDialog(this)
                 dialog.show()
             }
-
-
         }
     }
-
-
 }

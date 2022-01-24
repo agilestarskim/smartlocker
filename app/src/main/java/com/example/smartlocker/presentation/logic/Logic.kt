@@ -37,7 +37,6 @@ class Logic(application: Application) {
             setSelectedId(id)
             //관리자 모드
             if (AdminMode.liveState.value!!) {
-                Log.d("myTag", "관리자 모드입니다. ")
                 when (AdminMode.mode) {
                     //열기 모드
                     (1) -> {
@@ -64,7 +63,6 @@ class Logic(application: Application) {
                     (2) -> {
                         //사용 가능
                         if(node == null){
-                            Log.d("myTag", "사물함 점검 중으로 만들기 ")
                             liveNode.insert(NodeModel(getSelectedId(),"000000",false))
                             AdminMode.liveState.value = false
                         }

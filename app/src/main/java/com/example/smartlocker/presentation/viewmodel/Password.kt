@@ -92,7 +92,6 @@ class Password(application: Application): AndroidViewModel(application) {
     private fun checkPassword(){
         //비밀번호가 일치 성공
         if(_firstPassword == _secondPassword){
-            //TODO 비밀번호 설정 완료 ->사물함 배정
             complete()
             nextView.value = 1
         }
@@ -103,14 +102,12 @@ class Password(application: Application): AndroidViewModel(application) {
             if(count<3){
                 _secondPassword.clear()
                 _liveSecondPassword.value = _secondPassword
-                Log.d("myTag","비밀번호 확인 실패")
                 nextView.value = 2
             }
             //불일치 3회시 초기화
             else{
                 deleteAll()
                 count = 0
-                Log.d("myTag","비밀번호 2번 확인 실패 초기화")
                 nextView.value = 3
             }
 

@@ -11,16 +11,18 @@
         android:theme="@style/Theme.SmartLocker">
         <activity
             android:name=".presentation.view.activity.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:noHistory="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.view.activity.AssignActivity"/>
+        <activity android:name=".presentation.view.activity.AssignActivity" android:noHistory="true" />
 
-        <activity android:name=".presentation.view.activity.DashBoardActivity"/>
+        <activity android:name=".presentation.view.activity.DashBoardActivity" android:noHistory="true"/>
     </application>
 
 </manifest>
