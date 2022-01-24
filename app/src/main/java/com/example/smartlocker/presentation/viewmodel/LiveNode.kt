@@ -1,24 +1,19 @@
 package com.example.smartlocker.presentation.viewmodel
 
 import android.app.Application
-import android.content.Context
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
-import com.example.smartlocker.data.room.NodeDatabase
+import com.example.smartlocker.data.room.Database
 import com.example.smartlocker.data.room.NodeModel
-import com.example.smartlocker.data.state.AdminMode
-import com.example.smartlocker.data.state.Available
-import com.example.smartlocker.data.state.Using
 import kotlinx.coroutines.*
 
 class LiveNode(application: Application) : AndroidViewModel(application) {
 
     //데이터베이스 생성
     private val db by lazy {
-        Room.databaseBuilder(application, NodeDatabase::class.java, "nodeDB")
+        Room.databaseBuilder(application, Database::class.java, "nodeDB")
             .fallbackToDestructiveMigration()
             .build()
     }
