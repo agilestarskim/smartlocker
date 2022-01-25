@@ -7,6 +7,6 @@ import java.util.*
 
 @Entity(tableName = "StaticDayDB")
 data class StaticDayModel(
-    @PrimaryKey val day:Date,
+    @PrimaryKey val day:Long,
     @ColumnInfo(name = "state") val state: Int
 )

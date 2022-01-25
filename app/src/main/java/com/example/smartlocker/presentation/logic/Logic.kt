@@ -63,7 +63,7 @@ class Logic(application: Application) {
                     (2) -> {
                         //사용 가능
                         if(node == null){
-                            liveNode.insert(NodeModel(getSelectedId(),"000000",false))
+                            liveNode.insert(NodeModel(getSelectedId(),"000000",false, null))
                             AdminMode.liveState.value = false
                         }
 

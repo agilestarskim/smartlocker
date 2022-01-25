@@ -24,7 +24,9 @@
         <entry key="app/src/main/res/drawable/bg_white_radius80.xml" value="0.36822916666666666" />
         <entry key="app/src/main/res/drawable/bg_white_radius_20.xml" value="0.36822916666666666" />
         <entry key="app/src/main/res/drawable/bs_glass_oval.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_baseline_more_vert_40.xml" value="0.51953125" />
         <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.27447916666666666" />
+        <entry key="app/src/main/res/drawable/ic_exit_40.xml" value="0.541015625" />
         <entry key="app/src/main/res/drawable/ic_home_50.xml" value="0.36822916666666666" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.27447916666666666" />
         <entry key="app/src/main/res/drawable/ic_option_100.xml" value="0.1" />
@@ -36,8 +38,9 @@
         <entry key="app/src/main/res/drawable/node_fixing.xml" value="0.36822916666666666" />
         <entry key="app/src/main/res/drawable/node_using.xml" value="0.36822916666666666" />
         <entry key="app/src/main/res/drawable/using.xml" value="0.36822916666666666" />
+        <entry key="app/src/main/res/layout/abnormal_listview_cell.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_assign.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.16974789915966387" />
+        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="app/src/main/res/layout/dialog_admin_menu.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/dialog_assign.xml" value="0.1" />

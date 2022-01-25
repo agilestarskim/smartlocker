@@ -29,6 +29,7 @@ class AssignDialog(context: Context, val id:Int):Dialog(context){
             val intent = Intent(context, AssignActivity::class.java)
             intent.putExtra("id",id)
             startActivity(context,intent,null)
+            dismiss()
         }
         binding.noButton.setOnClickListener {
             dismiss()

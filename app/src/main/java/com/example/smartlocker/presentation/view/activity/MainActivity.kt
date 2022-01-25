@@ -49,6 +49,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
+
+
     private fun observeNodeList() {
         liveNode.liveNodeList.observe(
             this, { liveNodeList->
@@ -92,7 +94,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v) {
-
             binding.node1 -> logic.onClick(this, 1)
             binding.node2 -> logic.onClick(this, 2)
             binding.node3 -> logic.onClick(this, 3)

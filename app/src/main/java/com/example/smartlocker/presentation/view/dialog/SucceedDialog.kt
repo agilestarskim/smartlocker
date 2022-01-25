@@ -27,6 +27,7 @@ class SucceedDialog (context: Context, id:Int): Dialog(context) {
         binding.okButton.setOnClickListener {
             val intent = Intent(context, MainActivity::class.java)
             ContextCompat.startActivity(context, intent, null)
+            dismiss()
         }
 
     }

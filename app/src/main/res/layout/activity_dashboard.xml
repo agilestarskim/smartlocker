@@ -6,35 +6,23 @@
     android:layout_height="match_parent"
     android:background="#2E2E32"
     android:orientation="vertical"
-    android:padding="60dp">
+    android:paddingHorizontal="40dp"
+    android:paddingBottom="40dp"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="40dp"
+        android:layout_marginVertical="20dp"
         android:layout_marginHorizontal="5dp"
         >
 
-        <TextView
+        <ImageButton
+            android:id="@+id/exitButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="사물함 사용 통계"
-            android:textColor="@color/white"
-            android:textSize="60sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/cancleButton"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="X"
-            android:textColor="@color/white"
-            android:textSize="60sp"
-            android:textStyle="bold"
+            android:background="@drawable/ic_exit_40"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,141 +32,100 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginEnd="40dp"
             android:layout_weight="1"
             android:background="@drawable/bg_white_radius20"
             android:backgroundTint="#212121"
-            android:padding="40dp">
-
+            android:paddingVertical="20dp"
+            >
 
             <TextView
                 android:id="@+id/dataTitleText1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="데이터 테스트1"
+                android:text="비정상 사용자"
                 android:textColor="@color/white"
-                android:textSize="40sp"
-
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/timeSettingToggleButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/descriptionText1"
+            <ImageButton
+                android:id="@+id/timeSettingToggleButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="데이터에 대한 설명"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dataTitleText1" />
+                android:background="@drawable/ic_baseline_more_vert_40"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="38%"
-                android:textColor="@color/fixing_warning"
-                android:textSize="100sp"
+            <ListView
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/abnormalListView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionText1" />
+                app:layout_constraintTop_toBottomOf="@id/dataTitleText1"
 
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginEnd="40dp"
             android:layout_weight="1"
             android:background="@drawable/bg_white_radius20"
             android:backgroundTint="#212121"
-            android:padding="40dp">
+            android:padding="20dp">
 
-
-            <TextView
-                android:id="@+id/dataTitleText2"
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="데이터 테스트2"
-                android:textColor="@color/white"
-                android:textSize="40sp"
-
-                app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/ic_baseline_more_vert_40"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/descriptionText2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="데이터에 대한 설명"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dataTitleText2" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="13:00"
-                android:textColor="@color/teal_200"
-                android:textSize="100sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionText2" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/bg_white_radius20"
             android:backgroundTint="#212121"
-            android:padding="40dp"
-
+            android:padding="30dp"
             >
 
             <TextView
                 android:id="@+id/dataTitleText3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="데이터 테스트3"
+                android:text="사물함\n추가 설치가\n 필요합니다"
+                android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="40sp"
+                android:textSize="30sp"
 
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/descriptionText3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:text="데이터에 대한 설명"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dataTitleText3" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="부족"
-                android:textColor="#EE3333"
-                android:textSize="100sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionText3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

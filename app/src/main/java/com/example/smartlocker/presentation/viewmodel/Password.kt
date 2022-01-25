@@ -1,18 +1,15 @@
 package com.example.smartlocker.presentation.viewmodel
 
 import android.app.Application
-import android.content.Context
-import android.util.Log
+import android.os.SystemClock
 import androidx.lifecycle.*
 import com.example.smartlocker.data.room.NodeModel
 import com.example.smartlocker.presentation.logic.Logic
-import com.example.smartlocker.presentation.view.activity.AssignActivity
 import java.util.NoSuchElementException
 
 class Password(application: Application): AndroidViewModel(application) {
 
 
-    private val logic by lazy { Logic(application) }
     private val liveNode by lazy { LiveNode(application) }
 
     //비밀번호 확인 몇 번 틀렸는지 카운트
@@ -116,7 +113,14 @@ class Password(application: Application): AndroidViewModel(application) {
 
     private fun complete(){
         //nodeDB 저장
-        liveNode.insert(NodeModel(Logic.getSelectedId(), _secondPassword.joinToString(""),true))
+        val node = NodeModel(
+            id = Logic.getSelectedId(),
+            password = _secondPassword.joinToString(""),
+            enabled = true,
+            getTime = SystemClock.elapsedRealtime()
+        )
+        liveNode.insert(node)
+
         //TODO 사물함 OPEN
     }
 

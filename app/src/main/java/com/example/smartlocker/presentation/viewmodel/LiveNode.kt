@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
-import com.example.smartlocker.data.room.Database
+import com.example.smartlocker.data.room.SmartLockerDatabase
 import com.example.smartlocker.data.room.NodeModel
 import kotlinx.coroutines.*
 
@@ -13,9 +13,7 @@ class LiveNode(application: Application) : AndroidViewModel(application) {
 
     //데이터베이스 생성
     private val db by lazy {
-        Room.databaseBuilder(application, Database::class.java, "nodeDB")
-            .fallbackToDestructiveMigration()
-            .build()
+        SmartLockerDatabase.getInstance(application)
     }
 
     //라이브데이터
@@ -30,7 +28,7 @@ class LiveNode(application: Application) : AndroidViewModel(application) {
     fun fetch() {
         CoroutineScope(Dispatchers.Main).launch {
             val result = CoroutineScope(Dispatchers.IO).async {
-                db.getNodeDao().getAll()
+                db?.getNodeDao()?.getAll()
             }
             _liveNodeList.value = result.await()
         }
@@ -38,29 +36,29 @@ class LiveNode(application: Application) : AndroidViewModel(application) {
 
     suspend fun get(id: Int): NodeModel? {
         val result = CoroutineScope(Dispatchers.IO).async {
-            db.getNodeDao().get(id)
+            db?.getNodeDao()?.get(id)
         }
         return result.await()
     }
 
     fun insert(node: NodeModel) {
         CoroutineScope(Dispatchers.IO).launch {
-            db.getNodeDao().insert(node)
+            db?.getNodeDao()?.insert(node)
             fetch()
         }
     }
 
     fun delete(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
-            launch { db.getNodeDao().delete(id) }.join()
+            launch { db?.getNodeDao()?.delete(id) }.join()
             launch { fetch() }
         }
 
     }
 
     fun deleteAll() {
-        db.getNodeDao().deleteAll()
-        _liveNodeList.value = db.getNodeDao().getAll()
+        db?.getNodeDao()?.deleteAll()
+        _liveNodeList.value = db?.getNodeDao()?.getAll()
     }
 
 
