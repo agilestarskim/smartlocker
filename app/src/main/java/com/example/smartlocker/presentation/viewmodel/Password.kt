@@ -117,7 +117,7 @@ class Password(application: Application): AndroidViewModel(application) {
             id = Logic.getSelectedId(),
             password = _secondPassword.joinToString(""),
             enabled = true,
-            getTime = SystemClock.elapsedRealtime()
+            getTime = System.currentTimeMillis()
         )
         liveNode.insert(node)
 

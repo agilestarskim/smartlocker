@@ -47,6 +47,7 @@
         <entry key="app/src/main/res/layout/dialog_check.xml" value="0.22" />
         <entry key="app/src/main/res/layout/dialog_open.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_succeed.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/popup.xml" value="0.8287841191066998" />
       </map>
     </option>
   </component>
