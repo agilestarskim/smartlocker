@@ -1,14 +1,17 @@
 package com.example.smartlocker.presentation.logic
 
 import android.app.Application
+import android.bluetooth.BluetoothSocket
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import com.example.smartlocker.bluetooth.MyBluetoothService
 import com.example.smartlocker.data.room.NodeModel
 import com.example.smartlocker.data.state.AdminMode
 import com.example.smartlocker.data.state.Available
 import com.example.smartlocker.data.state.Fixing
 import com.example.smartlocker.data.state.Using
+import com.example.smartlocker.presentation.view.activity.MainActivity
 import com.example.smartlocker.presentation.view.dialog.OpenDialog
 import com.example.smartlocker.presentation.viewmodel.LiveNode
 import kotlinx.coroutines.CoroutineScope
@@ -30,7 +33,7 @@ class Logic(application: Application) {
     }
 
 
-    //메인에서 노드를 클릭했을 때3
+    //메인에서 노드를 클릭했을 때
     fun onClick(context: Context, id: Int) {
         CoroutineScope(Dispatchers.Main).launch {
             val node = liveNode.get(id)
@@ -40,6 +43,10 @@ class Logic(application: Application) {
                 when (AdminMode.mode) {
                     //열기 모드
                     (1) -> {
+                        //TODO OPEN
+                        MyBluetoothService.g_socket?.let {
+                            MyBluetoothService().ConnectedThread(it, getSelectedId()).run()
+                        }
                         //사용가능
                         if(node == null){
                             Toast.makeText(context,"${getSelectedId()}번이 열렸습니다.",Toast.LENGTH_SHORT).show()

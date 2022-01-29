@@ -2,9 +2,12 @@ package com.example.smartlocker.presentation.viewmodel
 
 import android.app.Application
 import android.os.SystemClock
+import android.util.Log
 import androidx.lifecycle.*
+import com.example.smartlocker.bluetooth.MyBluetoothService
 import com.example.smartlocker.data.room.NodeModel
 import com.example.smartlocker.presentation.logic.Logic
+import com.example.smartlocker.presentation.view.activity.MainActivity
 import java.util.NoSuchElementException
 
 class Password(application: Application): AndroidViewModel(application) {
@@ -121,7 +124,11 @@ class Password(application: Application): AndroidViewModel(application) {
         )
         liveNode.insert(node)
 
-        //TODO 사물함 OPEN
+        //TODO OPEN
+        MyBluetoothService.g_socket?.let {
+            MyBluetoothService().ConnectedThread(it,Logic.getSelectedId()).run()
+            Log.d("myTag", "열려라 참깨!!")
+        }
     }
 
 }

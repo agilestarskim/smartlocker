@@ -12,8 +12,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
+import com.example.smartlocker.bluetooth.MyBluetoothService
 import com.example.smartlocker.databinding.DialogCheckBinding
 import com.example.smartlocker.presentation.logic.Logic
+import com.example.smartlocker.presentation.view.activity.MainActivity
 import com.example.smartlocker.presentation.viewmodel.LiveNode
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -93,10 +95,15 @@ class CheckDialog(context: Context, val id: Int) : Dialog(context), View.OnClick
         binding.editText.setText(inputPassword.joinToString(""))
     }
 
+    @SuppressLint("MissingPermission")
     private fun check(){
         CoroutineScope(Dispatchers.Main).launch {
             if(inputPassword.joinToString("") == answerPassword.await() ){
                 dismiss()
+                //TODO OPEN
+                MyBluetoothService.g_socket?.let {
+                    MyBluetoothService().ConnectedThread(it,id).run()
+                }
                 val openDialog = OpenDialog(context)
                 openDialog.show()
             }

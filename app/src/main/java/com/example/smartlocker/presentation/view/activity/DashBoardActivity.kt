@@ -38,9 +38,9 @@ class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.On
     }
 
     private fun observeTimeSetting(){
-        static.timeSetting.observe(this,{
+        static.timeSetting.observe(this) {
             initAbnormalListView()
-        })
+        }
     }
 
     private fun initAbnormalListView(){

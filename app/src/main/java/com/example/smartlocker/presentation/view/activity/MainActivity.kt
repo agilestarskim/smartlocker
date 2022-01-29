@@ -1,13 +1,17 @@
 package com.example.smartlocker.presentation.view.activity
 
 
-import android.app.Application
+import android.annotation.SuppressLint
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothSocket
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.example.smartlocker.R
+import com.example.smartlocker.bluetooth.MyBluetoothService
 import com.example.smartlocker.data.state.AdminMode
 import com.example.smartlocker.databinding.ActivityMainBinding
 import com.example.smartlocker.presentation.logic.Logic
@@ -15,14 +19,16 @@ import com.example.smartlocker.presentation.view.dialog.CheckAdminDialog
 import com.example.smartlocker.presentation.viewmodel.LiveNode
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import java.io.IOException
+import java.util.*
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    lateinit var liveNode: LiveNode
+    private lateinit var liveNode: LiveNode
+
     private val logic by lazy { Logic(application) }
     private val nodeViewList by lazy {
         arrayOf(
@@ -36,6 +42,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -46,41 +53,50 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         initClickListener()
         observeNodeList()
         setAdminTextVisible()
+        if(MyBluetoothService.g_socket == null){
+            MyBluetoothService().initBluetooth()
+        }
+
+
     }
+
+
+
+
 
 
 
 
     private fun observeNodeList() {
         liveNode.liveNodeList.observe(
-            this, { liveNodeList->
-                val usingList = mutableListOf<Int>()
-                val fixingList = mutableListOf<Int>()
+            this,
+        ) { liveNodeList ->
+            val usingList = mutableListOf<Int>()
+            val fixingList = mutableListOf<Int>()
 
-                liveNodeList.forEach { nodeModel ->
-                    if(nodeModel.enabled) usingList.add(nodeModel.id)
-                    else fixingList.add(nodeModel.id)
+            liveNodeList.forEach { nodeModel ->
+                if (nodeModel.enabled) usingList.add(nodeModel.id)
+                else fixingList.add(nodeModel.id)
+            }
+            nodeViewList.forEachIndexed { index, _ ->
+                when (index) {
+                    0 -> return@forEachIndexed
+                    in usingList -> nodeViewList[index]?.setBackgroundResource(R.drawable.node_using)
+                    in fixingList -> nodeViewList[index]?.setBackgroundResource(R.drawable.node_fixing)
+                    else -> nodeViewList[index]?.setBackgroundResource(R.drawable.node_available)
                 }
-                nodeViewList.forEachIndexed { index, _ ->
-                    when (index) {
-                        0 -> return@forEachIndexed
-                        in usingList -> nodeViewList[index]?.setBackgroundResource(R.drawable.node_using)
-                        in fixingList -> nodeViewList[index]?.setBackgroundResource(R.drawable.node_fixing)
-                        else -> nodeViewList[index]?.setBackgroundResource(R.drawable.node_available)
-                    }
-                }
-            },
-        )
+            }
+        }
     }
 
     private fun setAdminTextVisible(){
-        AdminMode.liveState.observe(this,{
-            if(it){
+        AdminMode.liveState.observe(this) {
+            if (it) {
                 binding.adminModeText.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.adminModeText.visibility = View.INVISIBLE
             }
-        })
+        }
     }
 
     private fun initClickListener() {
@@ -105,4 +121,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
     }
+
+
+
+
 }
