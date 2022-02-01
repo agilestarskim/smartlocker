@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 import java.io.OutputStream
 import java.util.*
-import kotlin.concurrent.timer
 
 
 class MyBluetoothService{
@@ -32,7 +31,10 @@ class MyBluetoothService{
             }
 
         }
-        ConnectThread(mDevice).run()
+        if(bluetoothAdapter?.isEnabled == true){
+            ConnectThread(mDevice).run()
+        }
+
     }
 
     @SuppressLint("MissingPermission")
@@ -46,9 +48,7 @@ class MyBluetoothService{
         override fun run() {
             // Cancel discovery because it otherwise slows down the connection.
             bluetoothAdapter?.cancelDiscovery()
-
             mmSocket?.let { socket ->
-
                 socket.connect()
                 g_socket = socket
                 //전체 닫기

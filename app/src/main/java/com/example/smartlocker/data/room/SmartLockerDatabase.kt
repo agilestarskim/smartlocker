@@ -8,7 +8,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [NodeModel::class, StaticTimeModel::class, StaticDayModel::class], version = 5)
+@Database(entities = [NodeModel::class, StaticTimeModel::class, StaticDayModel::class], version = 6)
 abstract class SmartLockerDatabase : RoomDatabase() {
     abstract fun getNodeDao(): NodeDao
     abstract fun getStaticTimeDao() : StaticTimeDao

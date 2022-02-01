@@ -1,13 +1,17 @@
 package com.example.smartlocker.presentation.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.room.Room
 import com.example.smartlocker.data.room.SmartLockerDatabase
 import com.example.smartlocker.data.room.NodeModel
+import com.example.smartlocker.data.room.StaticTimeModel
 import kotlinx.coroutines.*
+import java.time.LocalDateTime
+import java.util.*
 
 class LiveNode(application: Application) : AndroidViewModel(application) {
 
@@ -31,6 +35,7 @@ class LiveNode(application: Application) : AndroidViewModel(application) {
                 db?.getNodeDao()?.getAll()
             }
             _liveNodeList.value = result.await()
+
         }
     }
 
@@ -45,6 +50,8 @@ class LiveNode(application: Application) : AndroidViewModel(application) {
         CoroutineScope(Dispatchers.IO).launch {
             db?.getNodeDao()?.insert(node)
             fetch()
+            insertStaticTime()
+
         }
     }
 
@@ -52,6 +59,7 @@ class LiveNode(application: Application) : AndroidViewModel(application) {
         CoroutineScope(Dispatchers.IO).launch {
             launch { db?.getNodeDao()?.delete(id) }.join()
             launch { fetch() }
+
         }
 
     }
@@ -61,6 +69,20 @@ class LiveNode(application: Application) : AndroidViewModel(application) {
         _liveNodeList.value = db?.getNodeDao()?.getAll()
     }
 
-
-
+    private fun insertStaticTime(){
+            val time: Int = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+            val currentAmount = db?.getNodeDao()?.getAll()?.filter { it.enabled }?.size?:0
+            if(db?.getStaticTimeDao()?.get(time) == null){
+                db?.getStaticTimeDao()?.insert(StaticTimeModel(time,currentAmount,1))
+            }else{
+                val maxAmount = db?.getStaticTimeDao()?.get(time)?.maxAmount
+                if(currentAmount > maxAmount!!){
+                    when((currentAmount.toFloat()/5.0*100).toInt()){
+                        in 0..20 -> db?.getStaticTimeDao()?.insert(StaticTimeModel(time,currentAmount,1))
+                        in 21..99 -> db?.getStaticTimeDao()?.insert(StaticTimeModel(time,currentAmount,2))
+                        100 -> db?.getStaticTimeDao()?.insert(StaticTimeModel(time,currentAmount,3))
+                    }
+                }
+            }
+    }
 }

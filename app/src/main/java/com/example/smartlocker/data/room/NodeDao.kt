@@ -8,7 +8,7 @@ interface NodeDao {
     @Query("SELECT * FROM nodeDB")
     fun getAll(): List<NodeModel>
 
-    @Query("SELECT * FROM nodeDB WHERE (:id) == id")
+    @Query("SELECT * FROM nodeDB WHERE id == :id")
     fun get(id:Int) : NodeModel?
 
     @Insert(onConflict = REPLACE)

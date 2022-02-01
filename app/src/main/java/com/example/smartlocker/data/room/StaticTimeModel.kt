@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "staticTimeDB")
 data class StaticTimeModel(
-    @PrimaryKey val time:Int,
-    @ColumnInfo(name = "max_amount") val maxAmount: Int
+    @PrimaryKey val time : Int,
+    @ColumnInfo(name = "max_amount") val maxAmount : Int,
+    @ColumnInfo(name = "state") val state : Int
     )

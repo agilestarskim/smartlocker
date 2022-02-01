@@ -127,7 +127,6 @@ class Password(application: Application): AndroidViewModel(application) {
         //TODO OPEN
         MyBluetoothService.g_socket?.let {
             MyBluetoothService().ConnectedThread(it,Logic.getSelectedId()).run()
-            Log.d("myTag", "열려라 참깨!!")
         }
     }
 

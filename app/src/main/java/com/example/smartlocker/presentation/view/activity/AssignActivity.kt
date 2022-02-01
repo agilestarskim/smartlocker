@@ -40,49 +40,50 @@ class AssignActivity : AppCompatActivity(), View.OnClickListener {
 
     //firstPassword UI 갱신
     private fun observeFirstPassword() {
-        password.firstPassword.observe(this, {
+        password.firstPassword.observe(this) {
             binding.firstEditText.setText(it.joinToString(""))
 
-        })
+        }
     }
 
     //secondPassword UI 갱신
     private fun observeSecondPassword() {
-        password.secondPassword.observe(this, {
+        password.secondPassword.observe(this) {
             binding.secondEditText.setText(it.joinToString(""))
 
-        })
+        }
 
     }
     //상태에 따른 editText border 색 변경
     private fun observeEditTextFocusChange(){
-        password.state.observe(this, {
-            if(it){
+        password.state.observe(this) {
+            if (it) {
                 binding.firstEditText.setBackgroundResource(R.drawable.bg_white_radius20)
                 binding.secondEditText.setBackgroundResource(R.drawable.bg_white_radius20_border_purple)
-            }else{
+            } else {
                 binding.firstEditText.setBackgroundResource(R.drawable.bg_white_radius20_border_purple)
                 binding.secondEditText.setBackgroundResource(R.drawable.bg_white_radius20)
             }
-        })
+        }
     }
     //결과에 따른 토스트 메시지 또는 다이얼로그 보여주기
     private fun observeNextViewState(){
-        password.nextView.observe(this,{
-            when(it){
-                (1)->{
+        password.nextView.observe(this) {
+            when (it) {
+                (1) -> {
                     val dialog = SucceedDialog(this, id = id)
                     dialog.show()
                 }
-                (2)->{
-                    Toast.makeText(this, "비밀번호가 일치하지 않습니다. 다시 입력해 주세요.",Toast.LENGTH_SHORT).show()
+                (2) -> {
+                    Toast.makeText(this, "비밀번호가 일치하지 않습니다. 다시 입력해 주세요.", Toast.LENGTH_SHORT).show()
                 }
-                (3)->{
-                    Toast.makeText(this, "비밀번호가 일치하지 않습니다. 처음부터 다시 설정해 주세요", Toast.LENGTH_SHORT).show()
+                (3) -> {
+                    Toast.makeText(this, "비밀번호가 일치하지 않습니다. 처음부터 다시 설정해 주세요", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
 
-        })
+        }
     }
 
     private fun initButtonListener() {
