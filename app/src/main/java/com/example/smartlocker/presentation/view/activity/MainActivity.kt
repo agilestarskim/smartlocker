@@ -1,14 +1,10 @@
 package com.example.smartlocker.presentation.view.activity
 
-
-import android.annotation.SuppressLint
-import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothDevice
-import android.bluetooth.BluetoothSocket
-import androidx.appcompat.app.AppCompatActivity
+import android.app.AlarmManager
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.smartlocker.R
 import com.example.smartlocker.bluetooth.MyBluetoothService
@@ -20,14 +16,14 @@ import com.example.smartlocker.presentation.viewmodel.LiveNode
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.IOException
-import java.util.*
-
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private lateinit var liveNode: LiveNode
+    private val alarmManager by lazy {
+        applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    }
 
     private val logic by lazy { Logic(application) }
     private val nodeViewList by lazy {
@@ -40,7 +36,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             binding.node5
         )
     }
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,15 +51,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if(MyBluetoothService.g_socket == null){
             MyBluetoothService().initBluetooth()
         }
-
-
     }
-
-
-
-
-
-
 
 
     private fun observeNodeList() {

@@ -83,6 +83,10 @@ class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.On
 
     override fun onMenuItemClick(item: MenuItem): Boolean {
         return when(item.itemId){
+            R.id.timeSettinAll -> {
+                static.setSharedPrefTimeSetting(0,this)
+                true
+            }
             R.id.timeSetting1 -> {
                 static.setSharedPrefTimeSetting(24, this)
                 true
@@ -100,43 +104,43 @@ class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.On
     }
 
     private fun initChart(){
-
-        binding.chart.run {
-            description.isEnabled = false //차트 옆에 별도로 표기되는 description이다. false로 설정하여 안보이게 했다.
-            setMaxVisibleValueCount(14) // 최대 보이는 그래프 개수를 14개로 정해주었다.
-            setPinchZoom(false) // 핀치줌(두손가락으로 줌인 줌 아웃하는것) 설정
-            setDrawBarShadow(false)//그래프의 그림자
-            setDrawGridBackground(false)//격자구조 넣을건지
-
-            axisLeft.run { //왼쪽 축. 즉 Y방향 축을 뜻한다.
-                axisMaximum = 5f // 최댓값 5
-                axisMinimum = 0f // 최소값 0
-                granularity = 1f // 1 단위마다 표시
-
-                setDrawLabels(true) // 값 적는거 허용 (1,2,3,4,5)
-                setDrawGridLines(false) //격자 라인 활용
-                setDrawAxisLine(false) // 축 그리기 설정
-                textColor = ContextCompat.getColor(context,R.color.white) // 라벨 텍스트 컬러 설정
-                textSize = 14f //라벨 텍스트 크기
-            }
-            xAxis.run {
-                position = XAxis.XAxisPosition.BOTTOM//X축을 아래에다가 둔다.
-                granularity = 1f // 1 단위만큼 간격 두기
-                setCenterAxisLabels(false)
-                setLabelCount(14, false)
-                setDrawAxisLine(true) // 축 그림
-                setDrawGridLines(false) // 격자
-                textColor = ContextCompat.getColor(context,R.color.white) //라벨 색상
-                valueFormatter = MyXAxisFormatter() // 축 라벨 값 바꿔주기 위함
-                textSize = 14f // 텍스트 크기
-            }
-            axisRight.isEnabled = false // 오른쪽 Y축을 안보이게 해줌.
-            setTouchEnabled(false) // 그래프 터치해도 아무 변화없게 막음
-            animateY(1000) // 밑에서부터 올라오는 애니매이션 적용
-            legend.isEnabled = false //차트 범례 설정
-
-        }
         CoroutineScope(Dispatchers.Main).launch {
+            static.initDataEntries()
+            binding.chart.run {
+                description.isEnabled = false //차트 옆에 별도로 표기되는 description이다. false로 설정하여 안보이게 했다.
+                setMaxVisibleValueCount(14) // 최대 보이는 그래프 개수를 14개로 정해주었다.
+                setPinchZoom(false) // 핀치줌(두손가락으로 줌인 줌 아웃하는것) 설정
+                setDrawBarShadow(false)//그래프의 그림자
+                setDrawGridBackground(false)//격자구조 넣을건지
+
+                axisLeft.run { //왼쪽 축. 즉 Y방향 축을 뜻한다.
+                    axisMaximum = 5f // 최댓값 5
+                    axisMinimum = 0f // 최소값 0
+                    granularity = 1f // 1 단위마다 표시
+
+                    setDrawLabels(true) // 값 적는거 허용 (1,2,3,4,5)
+                    setDrawGridLines(false) //격자 라인 활용
+                    setDrawAxisLine(false) // 축 그리기 설정
+                    textColor = ContextCompat.getColor(context,R.color.white) // 라벨 텍스트 컬러 설정
+                    textSize = 14f //라벨 텍스트 크기
+                }
+                xAxis.run {
+                    position = XAxis.XAxisPosition.BOTTOM//X축을 아래에다가 둔다.
+                    granularity = 1f // 1 단위만큼 간격 두기
+                    setCenterAxisLabels(false)
+                    setLabelCount(14, false)
+                    setDrawAxisLine(true) // 축 그림
+                    setDrawGridLines(false) // 격자
+                    textColor = ContextCompat.getColor(context,R.color.white) //라벨 색상
+                    valueFormatter = MyXAxisFormatter() // 축 라벨 값 바꿔주기 위함
+                    textSize = 14f // 텍스트 크기
+                }
+                axisRight.isEnabled = false // 오른쪽 Y축을 안보이게 해줌.
+                setTouchEnabled(false) // 그래프 터치해도 아무 변화없게 막음
+                animateY(1000) // 밑에서부터 올라오는 애니매이션 적용
+                legend.isEnabled = false //차트 범례 설정
+
+            }
             val result = CoroutineScope(Dispatchers.Main).async {
                 return@async static.setDataEntries()
             }.await()
@@ -153,7 +157,6 @@ class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.On
                 invalidate()
             }
         }
-
     }
 
     inner class MyXAxisFormatter : ValueFormatter(){
@@ -162,6 +165,8 @@ class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.On
             return time.getOrNull(value.toInt() - 1)?:value.toString()
         }
     }
+
+
 
 
 }

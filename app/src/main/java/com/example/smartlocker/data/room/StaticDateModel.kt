@@ -5,8 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
 
-@Entity(tableName = "StaticDayDB")
-data class StaticDayModel(
-    @PrimaryKey val day:Long,
+@Entity(tableName = "StaticDate")
+data class StaticDateModel(
+    @PrimaryKey val date:String,
     @ColumnInfo(name = "state") val state: Int
 )

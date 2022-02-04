@@ -1,5 +1,6 @@
 package com.example.smartlocker.presentation.view.dialog
 
+import android.app.Application
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -12,10 +13,12 @@ import com.example.smartlocker.data.state.AdminMode
 import com.example.smartlocker.databinding.DialogAdminMenuBinding
 import com.example.smartlocker.presentation.view.activity.DashBoardActivity
 import com.example.smartlocker.presentation.view.activity.MainActivity
+import com.example.smartlocker.presentation.viewmodel.LiveNode
 
 class AdminMenuDialog(context: Context):Dialog(context),View.OnClickListener {
 
     private val binding = DialogAdminMenuBinding.inflate(layoutInflater)
+    private val liveNode by lazy { LiveNode(context.applicationContext as Application)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,8 @@ class AdminMenuDialog(context: Context):Dialog(context),View.OnClickListener {
         initButtonListener()
     }
     private fun initButtonListener(){
+        binding.openAllButton.setOnClickListener(this)
+        binding.freeAllButton.setOnClickListener(this)
         binding.openOneButton.setOnClickListener(this)
         binding.fixButton.setOnClickListener(this)
         binding.staticButton.setOnClickListener(this)
@@ -39,6 +44,11 @@ class AdminMenuDialog(context: Context):Dialog(context),View.OnClickListener {
             (binding.openOneButton)->{
                 AdminMode.liveState.value = true
                 AdminMode.mode = 1
+                dismiss()
+            }
+
+            (binding.freeAllButton) ->{
+                liveNode.deleteAll()
                 dismiss()
             }
 

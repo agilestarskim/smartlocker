@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.example.smartlocker.data.state.NodeState
 import java.util.*
 
-@Entity(tableName = "nodeDB")
+@Entity(tableName = "node")
 data class NodeModel(
     @PrimaryKey val id:Int,
     @ColumnInfo(name = "password") val password:String,

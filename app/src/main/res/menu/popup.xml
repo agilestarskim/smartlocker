@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/timeSettinAll"
+        android:title="전체 보기"/>
+    <item
         android:id="@+id/timeSetting1"
         android:title="24 시간 이상 "
         />

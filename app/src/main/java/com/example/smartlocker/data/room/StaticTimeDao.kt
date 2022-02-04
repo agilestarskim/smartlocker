@@ -5,10 +5,10 @@ import androidx.room.*
 @Dao
 interface StaticTimeDao {
 
-    @Query("SELECT * FROM staticTimeDB ORDER BY time")
+    @Query("SELECT * FROM staticTime ORDER BY time")
     fun getAll(): List<StaticTimeModel>
 
-    @Query("SELECT * FROM staticTimeDB WHERE (:time) == time")
+    @Query("SELECT * FROM staticTime WHERE time == :time")
     fun get(time: Int): StaticTimeModel?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -17,6 +17,6 @@ interface StaticTimeDao {
     @Update
     fun update(staticTimeModel: StaticTimeModel)
 
-    @Query("DELETE FROM staticTimeDB WHERE time == :time")
-    fun delete(time:Int)
+    @Query("DELETE FROM staticTime ")
+    fun delete()
 }

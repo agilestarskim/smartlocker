@@ -4,6 +4,9 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.SET_ALARM"/>
+
 
     <application
         android:allowBackup="true"
@@ -12,6 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartLocker">
+        <receiver android:name=".alarm.AlarmReceiver" android:process=":remote" android:enabled="true"/>
         <activity
             android:name=".presentation.view.activity.MainActivity"
             android:exported="true"
