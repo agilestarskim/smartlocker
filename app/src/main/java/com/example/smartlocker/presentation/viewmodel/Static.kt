@@ -111,7 +111,7 @@ class Static(application: Application) : AndroidViewModel(application) {
     suspend fun setResult():Int{
         val list:MutableList<StaticDateModel> = getDateList()
         var totalValue : Int = 0
-        for (index in 0..9){
+        for (index in 0..6){
             try {
                 totalValue += list[index].state
             }catch (e : IndexOutOfBoundsException){

@@ -83,9 +83,9 @@ class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.On
     }
 
     private fun initResultView(){
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             when(static.setResult()){
-                1-> binding.resultTextView.text = "사물함 낭비\n불필요 사물함 정리 필요"
+                1-> binding.resultTextView.text = "사물함 낭비"
                 2-> binding.resultTextView.text = "사물함 이상 없음"
                 3-> binding.resultTextView.text = "사물함 부족\n추가 설치 필요"
             }
