@@ -29,12 +29,10 @@ class MyBluetoothService{
             if(deviceName == "HC-06"){
                 mDevice = device
             }
-
         }
         if(bluetoothAdapter?.isEnabled == true){
             ConnectThread(mDevice).run()
         }
-
     }
 
     @SuppressLint("MissingPermission")
@@ -43,7 +41,6 @@ class MyBluetoothService{
         private val mmSocket: BluetoothSocket? by lazy(LazyThreadSafetyMode.NONE) {
             device?.createRfcommSocketToServiceRecord(UUID.fromString("00001101-0000-1000-8000-00805f9b34fb"))
         }
-
 
         override fun run() {
             // Cancel discovery because it otherwise slows down the connection.

@@ -32,7 +32,6 @@ class Logic(application: Application) {
         }
     }
 
-
     //메인에서 노드를 클릭했을 때
     fun onClick(context: Context, id: Int) {
         CoroutineScope(Dispatchers.Main).launch {

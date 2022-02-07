@@ -110,7 +110,6 @@ class Password(application: Application): AndroidViewModel(application) {
                 count = 0
                 nextView.value = 3
             }
-
         }
     }
 

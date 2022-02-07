@@ -1,8 +1,8 @@
 package com.example.smartlocker.presentation.view.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
@@ -13,18 +13,21 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.smartlocker.R
 import com.example.smartlocker.databinding.ActivityDashboardBinding
 import com.example.smartlocker.presentation.view.activity.DashBoard.AbnormalListViewAdapter
+import com.example.smartlocker.presentation.view.activity.DashBoard.StaticDateListViewAdapter
 import com.example.smartlocker.presentation.viewmodel.Static
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
@@ -36,9 +39,20 @@ class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.On
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        setChartSync()
+        setTime()
+        initAbnormalListView()
+        observe()
         initClickListener()
-        observeTimeSetting()
-        initChart()
+    }
+
+    private fun setChartSync(){
+        CoroutineScope(Dispatchers.IO).launch {
+            static.setStatic(3)
+            initDateListView()
+            initChart()
+            initResultView()
+        }
     }
 
     private fun initClickListener(){
@@ -46,16 +60,36 @@ class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.On
         binding.timeSettingToggleButton.setOnClickListener(this)
     }
 
-    private fun observeTimeSetting(){
+    private fun observe(){
         static.timeSetting.observe(this) {
             initAbnormalListView()
         }
     }
 
     private fun initAbnormalListView(){
-        val abnormalList = static.getAbnormalList()
-        val adapter = AbnormalListViewAdapter(abnormalList)
-        binding.abnormalListView.adapter = adapter
+        CoroutineScope(Dispatchers.Main).launch {
+            val abnormalList = static.getAbnormalList()
+            val adapter = AbnormalListViewAdapter(abnormalList)
+            binding.abnormalListView.adapter = adapter
+        }
+    }
+
+    private fun initDateListView(){
+        CoroutineScope(Dispatchers.Main).launch {
+            val list = static.getDateList()
+            val adapter = StaticDateListViewAdapter(list)
+            binding.staticDateListView.adapter = adapter
+        }
+    }
+
+    private fun initResultView(){
+        CoroutineScope(Dispatchers.IO).launch {
+            when(static.setResult()){
+                1-> binding.resultTextView.text = "사물함 낭비\n불필요 사물함 정리 필요"
+                2-> binding.resultTextView.text = "사물함 이상 없음"
+                3-> binding.resultTextView.text = "사물함 부족\n추가 설치 필요"
+            }
+        }
     }
 
 
@@ -65,7 +99,6 @@ class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.On
                 val intent = Intent(this, MainActivity::class.java)
                 ContextCompat.startActivity(this, intent, null)
             }
-
             binding.timeSettingToggleButton -> {
                 showPopup(v)
             }
@@ -102,12 +135,18 @@ class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.On
             else -> {false}
         }
     }
+    private fun setTime(){
+        val t = System.currentTimeMillis()
+        val f = SimpleDateFormat("yyyy/MM/dd E", Locale.KOREAN)
+        binding.timeTextView.text = f.format(t)
+    }
 
     private fun initChart(){
+
         CoroutineScope(Dispatchers.Main).launch {
             static.initDataEntries()
             binding.chart.run {
-                description.isEnabled = false //차트 옆에 별도로 표기되는 description이다. false로 설정하여 안보이게 했다.
+                description.isEnabled = false //차트 옆에 별도로 표기되는 description 이다.
                 setMaxVisibleValueCount(14) // 최대 보이는 그래프 개수를 14개로 정해주었다.
                 setPinchZoom(false) // 핀치줌(두손가락으로 줌인 줌 아웃하는것) 설정
                 setDrawBarShadow(false)//그래프의 그림자
@@ -141,18 +180,15 @@ class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.On
                 legend.isEnabled = false //차트 범례 설정
 
             }
-            val result = CoroutineScope(Dispatchers.Main).async {
-                return@async static.setDataEntries()
-            }.await()
 
-            var set = BarDataSet(result,"DataSet")//데이터셋 초기화 하기
-            set.color = ContextCompat.getColor(this@DashBoardActivity,R.color.fixing_warning)
+            val set = BarDataSet(static.setDataEntries(),"DataSet")//데이터셋 초기화 하기
+            set.color = ContextCompat.getColor(this@DashBoardActivity, R.color.fixing_warning)
             val dataSet :ArrayList<IBarDataSet> = ArrayList()
             dataSet.add(set)
             val data = BarData(dataSet)
-            data.barWidth = 0.5f//막대 너비 설정하기
+            data.barWidth = 0.4f//막대 너비 설정하기
             binding.chart.run {
-                this.data = data //차트의 데이터를 data로 설정해줌.
+                this.data = data //차트의 데이터를 data 로 설정해줌.
                 setFitBars(true)
                 invalidate()
             }

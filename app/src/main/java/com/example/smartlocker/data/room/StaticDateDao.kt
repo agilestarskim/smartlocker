@@ -4,7 +4,7 @@ import androidx.room.*
 
 @Dao
 interface StaticDateDao {
-    @Query("SELECT * FROM staticDate")
+    @Query("SELECT * FROM staticDate ORDER BY date DESC ")
     fun getAll(): List<StaticDateModel>
 
     @Query("SELECT * FROM staticDate WHERE date == :day")

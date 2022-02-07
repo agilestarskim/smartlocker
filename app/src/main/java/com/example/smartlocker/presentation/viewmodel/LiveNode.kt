@@ -47,15 +47,15 @@ class LiveNode(application: Application) : AndroidViewModel(application) {
         CoroutineScope(Dispatchers.IO).launch {
             db?.getNodeDao()?.insert(node)
             fetch()
-            static.setStatic(true)
+            static.setStatic(1)
         }
     }
 
     fun delete(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
+            static.setStatic(2)
             db?.getNodeDao()?.delete(id)
             fetch()
-            static.setStatic(false)
         }
     }
 

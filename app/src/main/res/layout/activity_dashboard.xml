@@ -45,6 +45,7 @@
             android:background="@drawable/bg_white_radius20"
             android:backgroundTint="#212121"
             android:paddingVertical="20dp"
+            android:paddingHorizontal="10dp"
             >
 
             <TextView
@@ -52,8 +53,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="비정상 사용자"
+                android:fontFamily="@font/apple"
                 android:textColor="@color/white"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 android:layout_marginLeft="20dp"
                 app:layout_constraintBottom_toBottomOf="@+id/timeSettingToggleButton"
@@ -79,7 +81,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/dataTitleText1"
-
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -93,12 +94,23 @@
             android:padding="20dp">
 
             <ImageButton
+                android:id="@+id/imageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_baseline_more_vert_40"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ListView
+                android:id="@+id/staticDateListView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:scrollbars="none"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -109,14 +121,18 @@
             android:layout_weight="1"
             android:background="@drawable/bg_white_radius20"
             android:backgroundTint="#212121"
+
             android:padding="30dp"
             >
 
             <TextView
-                android:id="@+id/dataTitleText3"
+                android:id="@+id/resultTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="사물함\n추가 설치가\n 필요합니다"
+                android:text=""
+                android:fontFamily="@font/apple"
+                android:textStyle="bold"
+                android:letterSpacing="0.1"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="30sp"
@@ -126,8 +142,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
@@ -136,16 +150,23 @@
         android:layout_height="0dp"
         android:layout_marginTop="40dp"
         android:layout_weight="1"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:background="@drawable/bg_white_radius20"
         android:backgroundTint="#212121"
-        android:padding="10dp"
-        >
-    <com.github.mikephil.charting.charts.BarChart
-        android:id="@+id/chart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/timeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2022/02/12"
+            android:textColor="@color/white"
+            android:layout_gravity="right"
+            />
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 

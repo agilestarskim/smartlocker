@@ -29,8 +29,6 @@ class OpenDialog(context: Context):Dialog(context), View.OnClickListener {
         binding.textView3.text = "${Logic.getSelectedId()}번 문이 열렸습니다.\n 사용이 끝났으면 반납해 주세요."
         binding.freeButton.setOnClickListener(this)
         binding.keepUsingButton.setOnClickListener(this)
-
-
     }
 
     override fun onClick(v: View?) {

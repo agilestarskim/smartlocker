@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/drawable/background_opacity_0.xml" value="0.27447916666666666" />
         <entry key="app/src/main/res/drawable/background_transparency.xml" value="0.27447916666666666" />
         <entry key="app/src/main/res/drawable/bg_glass_oval.xml" value="0.275" />
+        <entry key="app/src/main/res/drawable/bg_gradient_radius_20.xml" value="0.299" />
         <entry key="app/src/main/res/drawable/bg_gradients.xml" value="0.36822916666666666" />
         <entry key="app/src/main/res/drawable/bg_gray_oval.xml" value="0.36822916666666666" />
         <entry key="app/src/main/res/drawable/bg_gray_radius20.xml" value="0.36822916666666666" />
@@ -38,7 +39,7 @@
         <entry key="app/src/main/res/drawable/node_fixing.xml" value="0.36822916666666666" />
         <entry key="app/src/main/res/drawable/node_using.xml" value="0.36822916666666666" />
         <entry key="app/src/main/res/drawable/using.xml" value="0.36822916666666666" />
-        <entry key="app/src/main/res/layout/abnormal_listview_cell.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/abnormal_listview_cell.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_assign.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.55" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
@@ -47,6 +48,7 @@
         <entry key="app/src/main/res/layout/dialog_check.xml" value="0.22" />
         <entry key="app/src/main/res/layout/dialog_open.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_succeed.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/static_date_listview_cell.xml" value="0.8287841191066998" />
         <entry key="app/src/main/res/menu/popup.xml" value="0.8287841191066998" />
       </map>
     </option>
