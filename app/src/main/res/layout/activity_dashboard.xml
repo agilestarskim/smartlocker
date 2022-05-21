@@ -94,7 +94,7 @@
             android:padding="20dp">
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/dateInitButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_baseline_more_vert_40"
@@ -106,7 +106,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton"
+                app:layout_constraintEnd_toStartOf="@+id/dateInitButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:scrollbars="none"

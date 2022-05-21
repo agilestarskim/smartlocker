@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.smartlocker.data.room.SmartLockerDatabase
@@ -56,7 +55,7 @@ class Static(application: Application) : AndroidViewModel(application) {
     suspend fun getDateList(): MutableList<StaticDateModel> {
         val result = CoroutineScope(Dispatchers.IO).async {
             val staticDateList = mutableListOf<StaticDateModel>()
-            db?.getStaticDayDao()?.getAll()?.filterNot { it.state == 0 }?.forEach {
+            db?.getStaticDateDao()?.getAll()?.filterNot { it.state == 0 }?.forEach {
                 staticDateList.add(it)
             }
             return@async staticDateList
@@ -77,6 +76,11 @@ class Static(application: Application) : AndroidViewModel(application) {
         timeSetting.value = sharedPref.getInt("timeOption", 48)
     }
 
+    fun initStaticDate(){
+        CoroutineScope(Dispatchers.IO).launch {
+            db?.getStaticDateDao()?.delete()
+        }
+    }
     /**
      * timeData : 타임데이터를 모두가져와 Bar Entry 에 담는다.
      */
@@ -135,10 +139,10 @@ class Static(application: Application) : AndroidViewModel(application) {
     }
 
     private fun setStaticDay(inputDate: String){
-        val date : String? = db?.getStaticDayDao()?.get(inputDate)?.date
+        val date : String? = db?.getStaticDateDao()?.get(inputDate)?.date
         if(date == null){
-            db?.getStaticDayDao()?.update(getDayState())
-            db?.getStaticDayDao()?.insert(StaticDateModel(inputDate, 0))
+            db?.getStaticDateDao()?.update(getDayState())
+            db?.getStaticDateDao()?.insert(StaticDateModel(inputDate, 0))
             initStaticTime()
         }
     }

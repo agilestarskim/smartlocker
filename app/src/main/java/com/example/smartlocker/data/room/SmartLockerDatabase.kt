@@ -11,8 +11,9 @@ import androidx.room.RoomDatabase
 abstract class SmartLockerDatabase : RoomDatabase() {
     abstract fun getNodeDao(): NodeDao
     abstract fun getStaticTimeDao() : StaticTimeDao
-    abstract fun getStaticDayDao() : StaticDateDao
+    abstract fun getStaticDateDao() : StaticDateDao
 
+    //데이터베이스를 싱클턴으로 구현
     companion object {
         private var instance: SmartLockerDatabase? = null
 

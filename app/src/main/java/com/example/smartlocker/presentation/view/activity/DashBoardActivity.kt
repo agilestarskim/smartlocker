@@ -3,6 +3,7 @@ package com.example.smartlocker.presentation.view.activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
@@ -58,6 +59,7 @@ class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.On
     private fun initClickListener(){
         binding.exitButton.setOnClickListener(this)
         binding.timeSettingToggleButton.setOnClickListener(this)
+        binding.dateInitButton.setOnClickListener(this)
     }
 
     private fun observe(){
@@ -85,6 +87,7 @@ class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.On
     private fun initResultView(){
         CoroutineScope(Dispatchers.Main).launch {
             when(static.setResult()){
+                0-> binding.resultTextView.text = "데이터 없음"
                 1-> binding.resultTextView.text = "사물함 낭비"
                 2-> binding.resultTextView.text = "사물함 이상 없음"
                 3-> binding.resultTextView.text = "사물함 부족\n추가 설치 필요"
@@ -100,17 +103,30 @@ class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.On
                 ContextCompat.startActivity(this, intent, null)
             }
             binding.timeSettingToggleButton -> {
-                showPopup(v)
+                showTimePopup(v)
+            }
+
+            binding.dateInitButton -> {
+                showInitPopup(v)
             }
         }
     }
 
-    private fun showPopup(v: View){
+    private fun showTimePopup(v: View){
         val popup = PopupMenu(this, v).apply {
             setOnMenuItemClickListener(this@DashBoardActivity)
         }
         val inflater: MenuInflater = popup.menuInflater
         inflater.inflate(R.menu.popup, popup.menu)
+        popup.show()
+    }
+
+    private fun showInitPopup(v: View) {
+        val popup = PopupMenu(this, v).apply {
+            setOnMenuItemClickListener(this@DashBoardActivity)
+        }
+        val inflater : MenuInflater = popup.menuInflater
+        inflater.inflate(R.menu.date_init_popup, popup.menu)
         popup.show()
     }
 
@@ -130,6 +146,12 @@ class DashBoardActivity: AppCompatActivity(), View.OnClickListener, PopupMenu.On
             }
             R.id.timeSetting3 -> {
                 static.setSharedPrefTimeSetting(72, this)
+                true
+            }
+
+            R.id.dateInit -> {
+                static.initStaticDate()
+                recreate()
                 true
             }
             else -> {false}

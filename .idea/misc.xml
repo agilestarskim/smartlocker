@@ -49,6 +49,7 @@
         <entry key="app/src/main/res/layout/dialog_open.xml" value="0.1" />
         <entry key="app/src/main/res/layout/dialog_succeed.xml" value="0.1" />
         <entry key="app/src/main/res/layout/static_date_listview_cell.xml" value="0.8287841191066998" />
+        <entry key="app/src/main/res/menu/date_init_popup.xml" value="0.6054590570719603" />
         <entry key="app/src/main/res/menu/popup.xml" value="0.8287841191066998" />
       </map>
     </option>
